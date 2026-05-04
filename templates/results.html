@@ -28,10 +28,10 @@
       padding: 14px 24px;
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 16px;
     }
     .back-link {
-      color: #2563eb;
+      color: #ea580c;
       text-decoration: none;
       font-size: 0.88rem;
       font-weight: 500;
@@ -41,7 +41,7 @@
 
     .header-company { flex: 1; min-width: 0; }
     .header-company h1 {
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       font-weight: 700;
       color: #0f172a;
       white-space: nowrap;
@@ -51,36 +51,47 @@
     .header-meta {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       flex-wrap: wrap;
       margin-top: 2px;
     }
     .ticker-badge {
-      background: #eff6ff;
-      color: #1d4ed8;
+      background: #fff7ed;
+      color: #9a3412;
       font-size: 0.75rem;
       font-weight: 700;
       padding: 2px 8px;
       border-radius: 4px;
       letter-spacing: 0.03em;
     }
-    .meta-pill {
-      font-size: 0.78rem;
-      color: #64748b;
-    }
+    .meta-pill  { font-size: 0.78rem; color: #64748b; }
     .meta-divider { color: #cbd5e1; font-size: 0.78rem; }
+
+    .btn-pdf {
+      background: #ea580c;
+      color: #fff;
+      border: none;
+      border-radius: 7px;
+      padding: 7px 14px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.15s;
+    }
+    .btn-pdf:hover { background: #c2410c; }
 
     /* ── Main layout ─────────────────────────────────────── */
     main {
       max-width: 860px;
       margin: 0 auto;
-      padding: 32px 24px 64px;
+      padding: 28px 24px 64px;
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 18px;
     }
 
-    /* ── Card ────────────────────────────────────────────── */
+    /* ── Cards ───────────────────────────────────────────── */
     .card {
       background: #fff;
       border-radius: 12px;
@@ -88,18 +99,18 @@
       overflow: hidden;
     }
     .card-header {
-      padding: 16px 22px;
+      padding: 14px 22px;
       border-bottom: 1px solid #e2e8f0;
       display: flex;
       align-items: center;
       gap: 10px;
     }
     .card-header h2 {
-      font-size: 0.95rem;
+      font-size: 0.88rem;
       font-weight: 700;
       color: #0f172a;
       text-transform: uppercase;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.05em;
     }
     .section-icon {
       width: 22px; height: 22px;
@@ -107,89 +118,59 @@
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
     }
-    .icon-overview  { background: #f0fdf4; }
-    .icon-desc      { background: #eff6ff; }
-    .icon-revenue   { background: #f0fdf4; }
-    .icon-risk      { background: #fff1f2; }
-    .icon-news      { background: #fefce8; }
+    .icon-overview { background: #f0fdf4; }
+    .icon-desc     { background: #fff7ed; }
+    .icon-revenue  { background: #f0fdf4; }
+    .icon-risk     { background: #fff1f2; }
+    .icon-news     { background: #fefce8; }
 
     .card-body { padding: 20px 22px; }
 
-    /* ── Overview table ──────────────────────────────────── */
+    /* ── Overview grid ───────────────────────────────────── */
     .overview-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
+      gap: 14px;
     }
-    .overview-item {}
     .overview-label {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       color: #94a3b8;
       text-transform: uppercase;
       letter-spacing: 0.05em;
       margin-bottom: 2px;
     }
-    .overview-value {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: #0f172a;
-    }
+    .overview-value { font-size: 0.95rem; font-weight: 600; color: #0f172a; }
 
     /* ── Description ─────────────────────────────────────── */
-    .description-text {
-      font-size: 0.9rem;
-      color: #334155;
-      line-height: 1.7;
-    }
+    .description-text { font-size: 0.9rem; color: #334155; line-height: 1.7; }
 
-    /* ── Search snippets ─────────────────────────────────── */
-    .snippet-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
+    /* ── Snippets ────────────────────────────────────────── */
+    .source-note {
+      font-size: 0.75rem;
+      color: #94a3b8;
+      padding: 0 22px 12px;
     }
+    .snippet-list { display: flex; flex-direction: column; }
     .snippet {
-      padding: 16px 0;
+      padding: 14px 0;
       border-bottom: 1px solid #f1f5f9;
     }
     .snippet:last-child { border-bottom: none; padding-bottom: 0; }
     .snippet:first-child { padding-top: 0; }
-
-    .snippet-title {
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: #0f172a;
-      margin-bottom: 4px;
-    }
-    .snippet-body {
-      font-size: 0.85rem;
-      color: #475569;
-      line-height: 1.55;
-      margin-bottom: 6px;
-    }
-    .snippet-source {
-      font-size: 0.78rem;
-      color: #94a3b8;
-    }
+    .snippet-title { font-size: 0.88rem; font-weight: 600; color: #0f172a; margin-bottom: 4px; }
+    .snippet-body  { font-size: 0.84rem; color: #475569; line-height: 1.55; margin-bottom: 5px; }
     .snippet-source a {
-      color: #2563eb;
+      font-size: 0.77rem;
+      color: #ea580c;
       text-decoration: none;
     }
     .snippet-source a:hover { text-decoration: underline; }
 
-    .empty-state {
-      font-size: 0.88rem;
-      color: #94a3b8;
-      font-style: italic;
-    }
+    .empty-state { font-size: 0.88rem; color: #94a3b8; font-style: italic; }
 
     /* ── News table ──────────────────────────────────────── */
     .news-table-wrap { overflow-x: auto; }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.85rem;
-    }
+    table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
     th {
       text-align: left;
       padding: 0 12px 10px 0;
@@ -207,16 +188,19 @@
       color: #334155;
     }
     tr:last-child td { border-bottom: none; }
-    td.date-col { white-space: nowrap; color: #94a3b8; font-size: 0.8rem; width: 90px; }
+    td.date-col   { white-space: nowrap; color: #94a3b8; font-size: 0.8rem; width: 90px; }
     td.source-col { white-space: nowrap; color: #64748b; font-size: 0.8rem; width: 130px; }
     td a { color: #1e293b; text-decoration: none; }
-    td a:hover { color: #2563eb; text-decoration: underline; }
+    td a:hover { color: #ea580c; text-decoration: underline; }
 
-    .source-note {
-      font-size: 0.75rem;
-      color: #94a3b8;
-      margin-top: -12px;
-      padding: 0 22px 16px;
+    /* ── Print styles ────────────────────────────────────── */
+    @media print {
+      * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      body  { background: #fff; }
+      header { position: static; border: none; }
+      .no-print { display: none !important; }
+      main  { padding: 0; gap: 12px; }
+      .card { box-shadow: none; break-inside: avoid; margin-bottom: 8px; }
     }
   </style>
 </head>
@@ -224,7 +208,7 @@
 
 <header>
   <div class="header-inner">
-    <a href="/" class="back-link">&larr; New search</a>
+    <a href="/" class="back-link no-print">&larr; New search</a>
     <div class="header-company">
       <h1>{{ name }}</h1>
       <div class="header-meta">
@@ -233,8 +217,13 @@
         <span class="meta-pill">{{ sector }}</span>
         <span class="meta-divider">&middot;</span>
         <span class="meta-pill">{{ market_cap }}</span>
+        {% if created_at %}
+          <span class="meta-divider">&middot;</span>
+          <span class="meta-pill">{{ created_at[:10] }}</span>
+        {% endif %}
       </div>
     </div>
+    <button class="btn-pdf no-print" onclick="window.print()">Export PDF</button>
   </div>
 </header>
 
@@ -250,22 +239,10 @@
     </div>
     <div class="card-body">
       <div class="overview-grid">
-        <div class="overview-item">
-          <div class="overview-label">Sector</div>
-          <div class="overview-value">{{ sector }}</div>
-        </div>
-        <div class="overview-item">
-          <div class="overview-label">Industry</div>
-          <div class="overview-value">{{ industry }}</div>
-        </div>
-        <div class="overview-item">
-          <div class="overview-label">Market Cap</div>
-          <div class="overview-value">{{ market_cap }}</div>
-        </div>
-        <div class="overview-item">
-          <div class="overview-label">Exchange</div>
-          <div class="overview-value">{{ exchange }}</div>
-        </div>
+        <div><div class="overview-label">Sector</div><div class="overview-value">{{ sector }}</div></div>
+        <div><div class="overview-label">Industry</div><div class="overview-value">{{ industry }}</div></div>
+        <div><div class="overview-label">Market Cap</div><div class="overview-value">{{ market_cap }}</div></div>
+        <div><div class="overview-label">Exchange</div><div class="overview-value">{{ exchange }}</div></div>
       </div>
     </div>
   </div>
@@ -274,7 +251,7 @@
   <div class="card">
     <div class="card-header">
       <div class="section-icon icon-desc">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="#2563eb"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/></svg>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="#ea580c"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/></svg>
       </div>
       <h2>Business Description</h2>
     </div>
@@ -301,7 +278,9 @@
               <div class="snippet-body">{{ r.body[:300] }}&hellip;</div>
               {% if r.href %}
                 <div class="snippet-source">
-                  <a href="{{ r.href }}" target="_blank" rel="noopener">{{ r.href | regex_replace('https?://(www\\.)?', '') | truncate(55, True, '…') }}</a>
+                  <a href="{{ r.href }}" target="_blank" rel="noopener">
+                    {{ r.href | regex_replace('https?://(www\\.)?', '') | truncate(60, True, '…') }}
+                  </a>
                 </div>
               {% endif %}
             </div>
@@ -331,7 +310,9 @@
               <div class="snippet-body">{{ r.body[:300] }}&hellip;</div>
               {% if r.href %}
                 <div class="snippet-source">
-                  <a href="{{ r.href }}" target="_blank" rel="noopener">{{ r.href | regex_replace('https?://(www\\.)?', '') | truncate(55, True, '…') }}</a>
+                  <a href="{{ r.href }}" target="_blank" rel="noopener">
+                    {{ r.href | regex_replace('https?://(www\\.)?', '') | truncate(60, True, '…') }}
+                  </a>
                 </div>
               {% endif %}
             </div>
@@ -356,22 +337,15 @@
         <div class="news-table-wrap">
           <table>
             <thead>
-              <tr>
-                <th>Date</th>
-                <th>Headline</th>
-                <th>Source</th>
-              </tr>
+              <tr><th>Date</th><th>Headline</th><th>Source</th></tr>
             </thead>
             <tbody>
               {% for item in news %}
                 <tr>
                   <td class="date-col">{{ item.date }}</td>
                   <td>
-                    {% if item.url %}
-                      <a href="{{ item.url }}" target="_blank" rel="noopener">{{ item.title }}</a>
-                    {% else %}
-                      {{ item.title }}
-                    {% endif %}
+                    {% if item.url %}<a href="{{ item.url }}" target="_blank" rel="noopener">{{ item.title }}</a>
+                    {% else %}{{ item.title }}{% endif %}
                   </td>
                   <td class="source-col">{{ item.source }}</td>
                 </tr>

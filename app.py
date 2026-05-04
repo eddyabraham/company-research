@@ -1,4 +1,5 @@
 import os
+import re
 import time
 
 from flask import Flask, flash, redirect, render_template, request, url_for
@@ -10,14 +11,16 @@ from company_research import (
     fmt_market_cap,
     process_news_items,
 )
+from db import get_history, get_search, init_db, save_search
 
 app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY", "dev-only-change-in-prod")
 
+init_db()
+
 
 @app.template_filter("regex_replace")
 def regex_replace(value, pattern, replacement):
-    import re
     return re.sub(pattern, replacement, value or "")
 
 
@@ -45,8 +48,7 @@ def research():
     risks = ddg_search(f"{display_name} key risks investor concerns headwinds challenges 2025")
 
     info = yahoo["info"]
-    return render_template(
-        "results.html",
+    data = dict(
         ticker=ticker_symbol,
         name=info.get("longName") or info.get("shortName") or display_name,
         sector=info.get("sector", "N/A"),
@@ -58,6 +60,22 @@ def research():
         risk_results=risks,
         news=process_news_items(yahoo["news"]),
     )
+    search_id = save_search(data)
+    return redirect(url_for("result", search_id=search_id))
+
+
+@app.route("/result/<int:search_id>")
+def result(search_id):
+    data = get_search(search_id)
+    if not data:
+        flash("Search not found.")
+        return redirect(url_for("index"))
+    return render_template("results.html", **data)
+
+
+@app.route("/history")
+def history():
+    return render_template("history.html", searches=get_history())
 
 
 if __name__ == "__main__":

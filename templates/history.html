@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search History</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #f1f5f9;
+      color: #1e293b;
+      min-height: 100vh;
+    }
+
+    header {
+      background: #fff;
+      border-bottom: 1px solid #e2e8f0;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .header-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .back-link {
+      color: #ea580c;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+    }
+    .back-link:hover { text-decoration: underline; }
+    .header-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #0f172a;
+    }
+    .header-count {
+      margin-left: auto;
+      font-size: 0.82rem;
+      color: #94a3b8;
+    }
+
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 28px 24px 64px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+      overflow: hidden;
+    }
+
+    /* Table */
+    table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+    thead tr { background: #f8fafc; }
+    th {
+      text-align: left;
+      padding: 12px 16px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #94a3b8;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    td {
+      padding: 14px 16px;
+      border-bottom: 1px solid #f1f5f9;
+      vertical-align: middle;
+      color: #334155;
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: #fffbf7; }
+
+    .company-name { font-weight: 600; color: #0f172a; }
+    .ticker-badge {
+      display: inline-block;
+      background: #fff7ed;
+      color: #9a3412;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 1px 6px;
+      border-radius: 3px;
+      margin-left: 6px;
+      letter-spacing: 0.03em;
+      vertical-align: middle;
+    }
+    td.sector-col  { color: #64748b; font-size: 0.84rem; }
+    td.cap-col     { color: #64748b; font-size: 0.84rem; white-space: nowrap; }
+    td.date-col    { color: #94a3b8; font-size: 0.82rem; white-space: nowrap; }
+    td.action-col  { text-align: right; white-space: nowrap; }
+
+    .view-link {
+      color: #ea580c;
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+    .view-link:hover { text-decoration: underline; }
+
+    /* Empty state */
+    .empty-state {
+      padding: 64px 24px;
+      text-align: center;
+    }
+    .empty-icon {
+      width: 48px; height: 48px;
+      background: #fff7ed;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px;
+    }
+    .empty-state h2 { font-size: 1rem; font-weight: 600; color: #0f172a; margin-bottom: 6px; }
+    .empty-state p  { font-size: 0.88rem; color: #64748b; margin-bottom: 20px; }
+    .btn-primary {
+      display: inline-block;
+      background: #ea580c;
+      color: #fff;
+      text-decoration: none;
+      padding: 9px 20px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      transition: background 0.15s;
+    }
+    .btn-primary:hover { background: #c2410c; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="/" class="back-link">&larr; New search</a>
+    <span class="header-title">Search History</span>
+    <span class="header-count">{{ searches|length }} brief{{ 's' if searches|length != 1 }}</span>
+  </div>
+</header>
+
+<main>
+  <div class="card">
+    {% if searches %}
+      <table>
+        <thead>
+          <tr>
+            <th>Company</th>
+            <th>Sector</th>
+            <th>Market Cap</th>
+            <th>Researched</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for s in searches %}
+            <tr>
+              <td>
+                <span class="company-name">{{ s.name }}</span>
+                <span class="ticker-badge">{{ s.ticker }}</span>
+              </td>
+              <td class="sector-col">{{ s.sector or '—' }}</td>
+              <td class="cap-col">{{ s.market_cap or '—' }}</td>
+              <td class="date-col">{{ s.created_at[:10] if s.created_at else '—' }}</td>
+              <td class="action-col">
+                <a href="/result/{{ s.id }}" class="view-link">View brief &rarr;</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <div class="empty-state">
+        <div class="empty-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="#ea580c"><path d="M13 2.05v2.02c3.95.49 7 3.85 7 7.93 0 3.21-1.81 6-4.72 7.28L13 17v5h5l-1.22-1.22C19.91 19.07 22 15.76 22 12c0-5.18-3.95-9.45-9-9.95zM11 2.05C5.95 2.55 2 6.82 2 12c0 3.76 2.09 7.07 5.22 8.78L6 22h5v-5l-2.28 2.28C7.81 18 6 15.21 6 12c0-4.08 3.05-7.44 7-7.93V2.05z"/></svg>
+        </div>
+        <h2>No searches yet</h2>
+        <p>Briefs you generate will appear here for easy reference.</p>
+        <a href="/" class="btn-primary">Generate your first brief</a>
+      </div>
+    {% endif %}
+  </div>
+</main>
+
+</body>
+</html>

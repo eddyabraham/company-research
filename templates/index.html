@@ -29,7 +29,7 @@
     .logo {
       width: 36px;
       height: 36px;
-      background: #2563eb;
+      background: #ea580c;
       border-radius: 8px;
       margin-bottom: 24px;
       display: flex;
@@ -74,13 +74,13 @@
       margin-bottom: 10px;
       color: #0f172a;
     }
-    input[type="text"]:focus { border-color: #2563eb; }
+    input[type="text"]:focus { border-color: #ea580c; }
 
     button[type="submit"] {
       display: block;
       width: 100%;
       padding: 11px;
-      background: #2563eb;
+      background: #ea580c;
       color: #fff;
       border: none;
       border-radius: 8px;
@@ -89,8 +89,8 @@
       cursor: pointer;
       transition: background 0.15s;
     }
-    button[type="submit"]:hover  { background: #1d4ed8; }
-    button[type="submit"]:disabled { background: #93c5fd; cursor: not-allowed; }
+    button[type="submit"]:hover   { background: #c2410c; }
+    button[type="submit"]:disabled { background: #fed7aa; cursor: not-allowed; }
 
     .loading {
       display: none;
@@ -103,19 +103,31 @@
     .spinner {
       width: 16px; height: 16px;
       border: 2px solid #e2e8f0;
-      border-top-color: #2563eb;
+      border-top-color: #ea580c;
       border-radius: 50%;
       flex-shrink: 0;
       animation: spin 0.7s linear infinite;
     }
     @keyframes spin { to { transform: rotate(360deg); } }
 
+    .footer-links {
+      margin-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
     .examples {
-      margin-top: 22px;
       font-size: 0.8rem;
       color: #94a3b8;
     }
     .examples strong { color: #64748b; }
+    .history-link {
+      font-size: 0.82rem;
+      color: #ea580c;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .history-link:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
@@ -125,7 +137,7 @@
     </div>
 
     <h1>Company Research</h1>
-    <p class="subtitle">Generate an instant research brief for any public company — business model, risks, and live news.</p>
+    <p class="subtitle">Generate an instant research brief for any public company &mdash; business model, risks, and live news.</p>
 
     {% with messages = get_flashed_messages() %}
       {% if messages %}
@@ -143,11 +155,14 @@
       Researching&hellip; takes about 15 seconds
     </div>
 
-    <p class="examples"><strong>Try:</strong> Microsoft &nbsp;&middot;&nbsp; TSLA &nbsp;&middot;&nbsp; Alphabet Inc</p>
+    <div class="footer-links">
+      <p class="examples"><strong>Try:</strong> Microsoft &nbsp;&middot;&nbsp; TSLA &nbsp;&middot;&nbsp; Alphabet</p>
+      <a href="/history" class="history-link">View history &rarr;</a>
+    </div>
   </div>
 
   <script>
-    function startLoading(form) {
+    function startLoading() {
       document.getElementById('loading').style.display = 'flex';
       var btn = document.getElementById('submit-btn');
       btn.textContent = 'Researching…';
