@@ -1,0 +1,4 @@
+Flask>=3.0
+gunicorn>=22.0
+yfinance>=0.2.50
+ddgs>=7.0
