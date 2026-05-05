@@ -2,7 +2,7 @@ import os
 import re
 import time
 
-from flask import Flask, flash, redirect, render_template, request, url_for
+from flask import Flask, flash, make_response, redirect, render_template, request, send_from_directory, url_for
 
 from company_research import (
     ddg_search,
@@ -22,6 +22,19 @@ init_db()
 @app.template_filter("regex_replace")
 def regex_replace(value, pattern, replacement):
     return re.sub(pattern, replacement, value or "")
+
+
+@app.route("/manifest.json")
+def manifest():
+    return send_from_directory("static", "manifest.json", mimetype="application/manifest+json")
+
+
+@app.route("/sw.js")
+def service_worker():
+    resp = make_response(send_from_directory("static", "sw.js"))
+    resp.headers["Service-Worker-Allowed"] = "/"
+    resp.headers["Content-Type"] = "application/javascript"
+    return resp
 
 
 @app.route("/")
